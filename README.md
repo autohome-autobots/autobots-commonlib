@@ -14,7 +14,7 @@
 
 #### 调用方式
 ``` javascript
-  import {Nav} from 'autobots-framework';
+  import {Nav} from 'autobots-commonlib';
   import HomePage from './pages/HomePage';
   
   Nav.pop();//返回上一页面
@@ -37,7 +37,8 @@
  
 #### 调用方式
 ``` javascript
-  import {Native} from 'autobots-framework';
+  import {Native} from 'autobots-
+  ';
   //回到汽车人首页
   Native.gotoHomePage();
   
@@ -50,7 +51,7 @@
  
 #### 调用方式
 ``` javascript
-import {Http} from 'autobots-framework';
+import {Http} from 'autobots-commonlib';
   
 Http.request("http://xxx.com",{name:""}).then(function(data){
           if(data)
@@ -73,7 +74,7 @@ Http.request("http://xxx.com",{name:""}).then(function(data){
  
 #### Navbar
 ``` javascript
-  import {Components} from 'autobots-framework';
+  import {Components} from 'autobots-commonlib';
   const {Navbar} = Components;
   
   ...
@@ -89,7 +90,7 @@ Http.request("http://xxx.com",{name:""}).then(function(data){
 
 #### ImagesPicker
 ``` javascript
-  import {Components} from 'autobots-framework';
+  import {Components} from 'autobots-commonlib';
   const {ImagesPicker} = Components;
   
   ...
@@ -108,7 +109,7 @@ Http.request("http://xxx.com",{name:""}).then(function(data){
 
 #### CameraPicker
 ``` javascript
-  import {Components} from 'autobots-framework';
+  import {Components} from 'autobots-commonlib';
   const {CameraPicker} = Components;
   
   ...
@@ -126,7 +127,7 @@ Http.request("http://xxx.com",{name:""}).then(function(data){
 
 #### EmployeePicker
 ``` javascript
-  import {Components} from 'autobots-framework';
+  import {Components} from 'autobots-commonlib';
   const {EmployeePicker} = Components;
   
   ...
@@ -146,7 +147,7 @@ Http.request("http://xxx.com",{name:""}).then(function(data){
 > 调用汽车人统一loading。  
 
 ``` javascript
-  import {Components} from 'autobots-framework';
+  import {Components} from 'autobots-commonlib';
   const {MainLoading} = Components;
   //短文本
   MainLoading.Show();
@@ -160,7 +161,7 @@ Http.request("http://xxx.com",{name:""}).then(function(data){
  
 #### 调用方式
 ``` javascript
-  import {Config} from 'autobots-framework';
+  import {Config} from 'autobots-commonlib';
   //获取参数对象
   var c = Config.get();
   
@@ -183,7 +184,7 @@ Http.request("http://xxx.com",{name:""}).then(function(data){
  
 #### 调用方式
 ``` javascript
-  import {Toast} from 'autobots-framework';
+  import {Toast} from 'autobots-commonlib';
   //短文本
   Toast.Show('xxx');
   //超长文本
