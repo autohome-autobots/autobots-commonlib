@@ -42,6 +42,13 @@
   //回到汽车人首页
   Native.gotoHomePage();
   
+  //获取动态口令
+  Native.getVerCode(cb);
+    cb为回调函数
+  
+  //获取员工OA账号
+  Native.getEmpCode();
+  
   //...后续回有更多接口加入
    
 ```
@@ -177,8 +184,6 @@ Http.request("http://xxx.com",{name:""}).then(function(data){
    
 ```
 
-
-
 ### Toast
 > toast功能。  
  
@@ -192,4 +197,181 @@ Http.request("http://xxx.com",{name:""}).then(function(data){
 
 ```
 
+### Alipay
+> 支付宝支付功能，如买健身劵功能会用到。
+``` javascript
+  import {Alipay} from 'autobots-commonlib';
+  
+  Alipay.pay(data,callback)
+  data 包含订单信息之类支付数据
+  callback 回调函数
+  
+```
 
+### WXPay
+> 微信支付功能，如买健身劵功能会用到。
+``` javascript
+  import {WXPay} from 'autobots-commonlib';
+  
+  WXPay.pay(data,callback)
+  data 包含订单信息之类支付数据
+  callback 回调函数
+  
+```
+
+### Scan
+> 调用二维码扫描。
+``` javascript
+  import {Scan} from 'autobots-commonlib';
+  
+  Scan.start(callback)
+  callback 回调函数
+  
+```
+
+### DingDing
+> 分享到钉钉功能。
+``` javascript
+  import {DingDing} from 'autobots-commonlib';
+  
+  DingDing.shareText(content,callback)
+  content为分享的内容，callback为回调函数
+  
+  DingDing.shareUrl(title,url,pic,content,callback)
+  title为标题，url为分享的URL，pic为图片，content为分享的内容，callback为回调函数
+  
+  DingDing.sharePic(pic,callback)
+  pic为分享的图片，callback为回调函数
+  
+```
+
+### WXShare
+> 分享到微信功能。
+``` javascript
+  import {WXShare} from 'autobots-commonlib';
+  
+  WXShare.shareText(content,wxtype,callback)
+  content为分享的内容，wxtype为 1表示微信，2表示朋友圈，callback为回调函数
+  
+  WXShare.shareUrl(title,url,pic,content,wxtype,callback)
+  title为标题，url为分享的URL，pic为图片，content为分享的内容，wxtype为 1表示微信，2表示朋友圈，callback为回调函数
+  
+  WXShare.sharePic(pic,wxtype,callback)
+  pic为分享的图片，wxtype为 1表示微信，2表示朋友圈，callback为回调函数
+  
+```
+
+### Update
+> 检测升级。
+``` javascript
+  import {Update} from 'autobots-commonlib';
+  
+  Update.Open(callback)
+  callback为回调函数
+  
+```
+
+### JumpToFeedback
+> 跳转到意见反馈界面。
+``` javascript
+  import {JumpToFeedback} from 'autobots-commonlib';
+  
+  JumpToFeedback.Open(callback)
+  callback为回调函数
+  
+```
+
+### Vpn
+> 跳转到意见反馈界面。
+``` javascript
+  import {Vpn} from 'autobots-commonlib';
+  
+  Vpn.connectVpn(username,password,serverAddress,sharedSecret,remoteId,localId,preferenceTitle)
+  连接Vpn
+  
+  Vpn.disconnectVpn()
+  断开Vpn连接
+  
+  Vpn.getVpnStatus(callback)
+  得到Vpn的状态
+  
+```
+
+### AutoLinkVPN
+> 自动连接Vpn功能。
+``` javascript
+  import {AutoLinkVPN} from 'autobots-commonlib';
+  
+  AutoLinkVPN.addListener(handler)
+  添加监听
+  
+  AutoLinkVPN.removeListener(handler)
+  断开监听
+  
+  AutoLinkVPN.removeAllListeners()
+  断开所有监听
+  
+  #### 调用方式
+  _handler = res => {
+    // 处于内网或者vpn连接成功
+    alert(res);
+  }
+
+  componentDidMount() {
+    AutoLinkVPN.addListener(this._handler);
+  }
+
+  componentWillUnmount() {
+    AutoLinkVPN.removeListener(this._handler);
+  }
+  
+```
+
+### NewAutobots
+> 提供一些辅助函数。 
+``` javascript
+
+  //获取系统版本信息
+  NewAutobots.getAppVersion(callback)
+  如，
+   _getAppVersion = () => {
+    return new Promise((resolve, reject) => {
+      if (NewAutobots) {
+        NewAutobots.getAppVersion(function(result, data) {
+          if (data) {
+            resolve(data);
+          } else {
+            reject(new Error('data do not exist'));
+          }
+        });
+      } else {
+        reject(new Error('NewAutobots do not exist'));
+      }
+    })
+      .then(res => [null, res])
+      .catch(err => [err, null]);
+  };
+  
+  //退出登录
+  NewAutobots.logout(callback)
+  如，
+  NewAutobots.logout();
+  
+  //原生的退出方法
+  NewAutobots.backPress(callback)
+  如，
+  NewAutobots.backPress();
+  
+  //设置pin码间隔的时间保存到原生端，单位为分钟
+  NewAutobots.setPinLockFrequency(minute,callback)
+  如，
+	  const minute = data.hours * 60;
+	// 存RN本地
+	global.storage.save({
+	  key: 'newautobots-mine-pinFrequency',
+	  data: minute
+	});
+	// 存原生
+	NewAutobots.setPinLockFrequency(minute);
+
+```
