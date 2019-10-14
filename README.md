@@ -42,6 +42,15 @@
   //回到汽车人首页
   Native.gotoHomePage();
   
+  //获取动态口令
+  Native.getVerCode(cb);
+    cb为回调函数
+  
+  //获取员工OA账号
+  Native.getEmpCode();
+  
+  
+  
   //...后续回有更多接口加入
    
 ```
